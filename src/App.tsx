@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { firestore } from '../src/firebase-config'
 import { addDoc, collection, onSnapshot, deleteDoc, doc } from 'firebase/firestore';
-// import './App.css';
 import './styles/app.scss';
 
 
@@ -35,12 +34,6 @@ function App() {
   }
 
   useEffect(() => {
-    console.log(weather);
-
-
-  }, [weather]);
-
-  useEffect(() => {
     document.title = 'Weather App';
 
     const weatherCollection = collection(firestore, 'weather');
@@ -57,7 +50,6 @@ function App() {
   }, []);
 
   const deleteWeather = (id: string) => {
-    console.log(id);
     const weatherRef = doc(firestore, 'weather', id);
     deleteDoc(weatherRef)
       .then(() => {
@@ -80,15 +72,15 @@ function App() {
         </form>
 
         {weather.map(({ temp, name, weatherIcon, sunrise, sunset, nameDel }, index) => {
-          return (            
-              <div key={index}>
-                <p className='temperature'>Temperature: {temp}&#8451;</p>
-                <p className='cityInformation'>City: {name}</p>
-                <p className='cityInformation'>Sunrise: {sunrise}</p>
-                <p className='cityInformation'>Sunset: {sunset}</p>
-                <img src={`https://www.weatherbit.io/static/img/icons/${weatherIcon}.png`} alt='' className='weatherImage' />
-                <button className='deleteButton' onClick={() => deleteWeather(nameDel)}>delete</button>
-              </div>
+          return (
+            <div key={index}>
+              <p className='temperature'>Temperature: {temp}&#8451;</p>
+              <p className='cityInformation'>City: {name}</p>
+              <p className='cityInformation'>Sunrise: {sunrise}</p>
+              <p className='cityInformation'>Sunset: {sunset}</p>
+              <img src={`https://www.weatherbit.io/static/img/icons/${weatherIcon}.png`} alt='' className='weatherImage' />
+              <button className='deleteButton' onClick={() => deleteWeather(nameDel)}>delete</button>
+            </div>
           )
         }
         )}
