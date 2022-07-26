@@ -6,7 +6,7 @@ A weather app where you can enter the city you are interested in. It will fetch 
 * html
 * sass
 * typescript
-* REACT
+* react
 
 # Screenshots 📺
 ![image](https://user-images.githubusercontent.com/61913031/180980960-d2cc5dd0-5cb6-40db-967e-1f9480ba0c1e.png)
