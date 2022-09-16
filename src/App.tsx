@@ -1,12 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { firestore } from '../src/firebase-config'
+import { firestore } from './config/firebase-config'
 import { addDoc, collection, onSnapshot, deleteDoc, doc } from 'firebase/firestore';
 import './styles/app.scss';
 
 
 function App() {
-  const [city, setCity] = useState('');
+  const [city, setCity] = useState<string>('');
   const [weather, setWeather] = useState<any>([]);
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
