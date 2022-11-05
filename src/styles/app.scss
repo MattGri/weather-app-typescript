@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 * {
   margin: 0;
   padding: 0;
@@ -5,7 +7,7 @@
 }
 
 body {
-  background-color: #000066;
+  background-color: $applicationColor;
   font-family: 'DM Sans', sans-serif;
 }
 
@@ -25,11 +27,11 @@ body {
 
   .cityInput {
     margin: 0px 20px 20px 20px;
-    background-color: #000066;
+    background-color: $applicationColor;
     border-top-style: hidden;
     border-right-style: hidden;
     border-left-style: hidden;
-    color: #fff;
+    color: $whiteColor;
     padding: 10px 10px 10px 0px;
 
     &:focus {
@@ -37,33 +39,33 @@ body {
     }
 
     &::placeholder {
-      color: #fff;
+      color: $whiteColor;
     }
   }
 
   .search {
     cursor: pointer;
     color: #fff;
-    background-color: #000066;
+    background-color: $applicationColor;
     transition: 0.5s;
-    border: 1px solid #fff;
+    border: 1px solid $whiteColor;
     padding: 10px;
     border-radius: 5px;
 
     &:hover {
-      background-color: #fff;
-      color: #000066;
+      background-color: $whiteColor;
+      color: $applicationColor;
     }
   }
 
   .temperature {
     font-size: 30px;
-    color: #fff;
+    color: $whiteColor;
     text-align: center;
   }
 
   .cityInformation {
-    color: #fff;
+    color: $whiteColor;
     text-align: center;
     font-size: 20px;
   }
@@ -74,9 +76,9 @@ body {
   }
 
   .deleteButton {
-    background-color: #000066;
-    color: #fff;
-    border: 1px solid #fff;
+    background-color: $applicationColor;
+    color: $whiteColor;
+    border: 1px solid $whiteColor;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
@@ -85,8 +87,8 @@ body {
     display: block;
 
     &:hover {
-      background-color: #fff;
-      color: #000066;
+      background-color: $whiteColor;
+      color: $applicationColor;
     }
   }
 }
