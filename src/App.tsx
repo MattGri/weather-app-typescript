@@ -12,9 +12,9 @@ import './styles/app.scss';
 
 function App() {
   const [city, setCity] = useState<string>('');
-  const [weather, setWeather] = useState<any>([]);
+  const [weatherData, setWeatherData] = useState<any>([]);
 
-  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (city === '') {
       return alert('Please enter a city');
@@ -35,7 +35,7 @@ function App() {
         };
         addDoc(weatherCollection, citys);
       });
-    setWeather([...weather, city]);
+    setWeatherData([...weatherData, city]);
 
     setCity('');
   };
@@ -45,7 +45,7 @@ function App() {
 
     const weatherCollection = collection(firestore, 'weather');
     onSnapshot(weatherCollection, (snapshot) => {
-      setWeather(
+      setWeatherData(
         snapshot.docs.map((doc) => {
           return {
             nameDel: doc.id,
@@ -56,7 +56,7 @@ function App() {
     });
   }, []);
 
-  const deleteWeather = (id: string) => {
+  const handleWeatherDelete = (id: string) => {
     const weatherRef = doc(firestore, 'weather', id);
     deleteDoc(weatherRef)
       .then(() => {
@@ -70,7 +70,7 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <form onSubmit={submitHandler} className="submit">
+        <form onSubmit={handleFormSubmit} className="submit">
           <label className="cityLabel">Type City: </label>
           <input
             type="text"
@@ -82,7 +82,7 @@ function App() {
           <button className="search">Submit</button>
         </form>
 
-        {weather.map(
+        {weatherData.map(
           ({ temp, name, weatherIcon, sunrise, sunset, nameDel }, index) => {
             return (
               <div key={index}>
@@ -97,7 +97,7 @@ function App() {
                 />
                 <button
                   className="deleteButton"
-                  onClick={() => deleteWeather(nameDel)}
+                  onClick={() => handleWeatherDelete(nameDel)}
                 >
                   delete
                 </button>
