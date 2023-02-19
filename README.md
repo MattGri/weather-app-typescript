@@ -4,7 +4,7 @@ A weather app where you can enter the city you are interested in. It will fetch 
 
 # Technologies 🔧
 * html
-* sass
+* scss
 * typescript
 * react
 
