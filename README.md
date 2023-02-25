@@ -1,5 +1,5 @@
 # Project Overview  🎉
-A weather app where you can enter the city you are interested in. It will fetch the result from an weather API and it will show you the actual temperature, city name, sunrise time, sunset time and the image of the actual weather. When you type the city, the result will be stored in the firebase database (firestore). If you want you can delete the city result.
+A weather app where you can enter the city you are interested in. It will fetch the result from a weather API and show you the actual temperature, city name, sunrise time, sunset time, and the image of the actual weather. When you type the city, the result will be stored in the Firebase database (Firestore). If you want, you can delete the city result.
 
 
 # Technologies 🔧
