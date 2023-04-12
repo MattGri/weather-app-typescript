@@ -3,10 +3,9 @@ A weather app where you can enter the city you are interested in. It will fetch 
 
 
 # Technologies 🔧
-* html
-* scss
-* typescript
-* react
+* Typescript
+* React
+* Scss
 
 # Screenshots 📺
 ![image](https://user-images.githubusercontent.com/61913031/180980960-d2cc5dd0-5cb6-40db-967e-1f9480ba0c1e.png)
@@ -19,4 +18,4 @@ A weather app where you can enter the city you are interested in. It will fetch 
  If you have any issues, please let me know on mateusz.grzybowski98@gmail.com
 
 # Live 📍
-https://bright-strudel-e60cdd.netlify.app/
+You can visit website here: https://bright-strudel-e60cdd.netlify.app/
