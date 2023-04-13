@@ -5,6 +5,7 @@ A weather app where you can enter the city you are interested in. It will fetch 
 # Technologies 🔧
 * Typescript
 * React
+* Firebase
 * Scss
 
 # Installation 💾
