@@ -9,23 +9,31 @@ import {
   doc,
 } from 'firebase/firestore';
 import './styles/app.scss';
+import WeatherCity from './components/WeatherCity';
 
 function App() {
   const [city, setCity] = useState<string>('');
   const [weatherData, setWeatherData] = useState<any>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (city === '') {
-      return alert('Please enter a city');
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 2000);
+      return;
     }
-
+    setLoading(true);
     const weatherCollection = collection(firestore, 'weather');
     axios
       .get(
         `https://api.weatherbit.io/v2.0/current?city=${city}&key=ede536b748804642b1484256e8d798ff&include=minutely`
       )
       .then((res) => {
+        setLoading(false);
         const citys = {
           name: res.data.data[0].city_name,
           temp: res.data.data[0].temp,
@@ -58,13 +66,7 @@ function App() {
 
   const handleWeatherDelete = (id: string) => {
     const weatherRef = doc(firestore, 'weather', id);
-    deleteDoc(weatherRef)
-      .then(() => {
-        console.log('Document successfully deleted!');
-      })
-      .catch((error) => {
-        console.error('Error removing document: ', error);
-      });
+    deleteDoc(weatherRef);
   };
 
   return (
@@ -82,26 +84,21 @@ function App() {
           <button className="search">Submit</button>
         </form>
 
+        {error && <p className="cityError">Enter a city</p>}
+        {loading && <p className="cityLoading">Loading...</p>}
+
         {weatherData.map(
-          ({ temp, name, weatherIcon, sunrise, sunset, nameDel }, index) => {
+          ({ temp, name, weatherIcon, sunrise, sunset, nameDel }) => {
             return (
-              <div key={index}>
-                <p className="temperature">Temperature: {temp}&#8451;</p>
-                <p className="cityInformation">City: {name}</p>
-                <p className="cityInformation">Sunrise: {sunrise}</p>
-                <p className="cityInformation">Sunset: {sunset}</p>
-                <img
-                  src={`https://www.weatherbit.io/static/img/icons/${weatherIcon}.png`}
-                  alt=""
-                  className="weatherImage"
-                />
-                <button
-                  className="deleteButton"
-                  onClick={() => handleWeatherDelete(nameDel)}
-                >
-                  delete
-                </button>
-              </div>
+              <WeatherCity
+                temp={temp}
+                name={name}
+                weatherIcon={weatherIcon}
+                sunrise={sunrise}
+                sunset={sunset}
+                nameDel={nameDel}
+                handleWeatherDelete={() => handleWeatherDelete(nameDel)}
+              />
             );
           }
         )}

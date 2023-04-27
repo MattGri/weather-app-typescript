@@ -16,6 +16,17 @@ body {
   width: 500px;
   margin: 30px auto;
 
+  .cityError {
+    text-align: center;
+    color: red;
+  }
+
+  .cityLoading {
+    text-align: center;
+    color: green;
+    margin-bottom: 10px;
+  }
+
   .submit {
     text-align: center;
   }
