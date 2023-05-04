@@ -11,9 +11,18 @@ import {
 import './styles/app.scss';
 import WeatherCity from './components/WeatherCity';
 
+interface WeatherData {
+  name: string;
+  temp: string;
+  weatherIcon: string;
+  sunrise: string;
+  sunset: string;
+  id: string;
+}
+
 function App() {
   const [city, setCity] = useState<string>('');
-  const [weatherData, setWeatherData] = useState<any>([]);
+  const [weatherData, setWeatherData] = useState<WeatherData[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
 
@@ -43,8 +52,6 @@ function App() {
         };
         addDoc(weatherCollection, citys);
       });
-    setWeatherData([...weatherData, city]);
-
     setCity('');
   };
 
@@ -55,9 +62,14 @@ function App() {
     onSnapshot(weatherCollection, (snapshot) => {
       setWeatherData(
         snapshot.docs.map((doc) => {
+          const data = doc.data();
           return {
-            nameDel: doc.id,
-            ...doc.data(),
+            id: doc.id,
+            name: data.name,
+            temp: data.temp,
+            weatherIcon: data.weatherIcon,
+            sunrise: data.sunrise,
+            sunset: data.sunset,
           };
         })
       );
@@ -87,21 +99,20 @@ function App() {
         {error && <p className="cityError">Enter a city</p>}
         {loading && <p className="cityLoading">Loading...</p>}
 
-        {weatherData.map(
-          ({ temp, name, weatherIcon, sunrise, sunset, nameDel }) => {
-            return (
-              <WeatherCity
-                temp={temp}
-                name={name}
-                weatherIcon={weatherIcon}
-                sunrise={sunrise}
-                sunset={sunset}
-                nameDel={nameDel}
-                handleWeatherDelete={() => handleWeatherDelete(nameDel)}
-              />
-            );
-          }
-        )}
+        {weatherData.map(({ temp, name, weatherIcon, sunrise, sunset, id }) => {
+          return (
+            <WeatherCity
+              key={id}
+              temp={temp}
+              name={name}
+              weatherIcon={weatherIcon}
+              sunrise={sunrise}
+              sunset={sunset}
+              nameDel={id}
+              handleWeatherDelete={() => handleWeatherDelete(id)}
+            />
+          );
+        })}
       </div>
     </div>
   );
