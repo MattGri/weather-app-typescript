@@ -25,4 +25,4 @@ A weather app where you can enter the city you are interested in. It will fetch 
  If you have any issues, please let me know on mateusz.grzybowski98@gmail.com
 
 # Live 📍
-You can visit website here: https://bright-strudel-e60cdd.netlify.app/
+You can visit website here: https://weatherappprojectportfolio.netlify.app/
