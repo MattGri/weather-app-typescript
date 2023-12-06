@@ -10,9 +10,9 @@ A weather app where you can enter the city you are interested in. It will fetch 
 
 # Installation 💾
 
-`git clone https://github.com/MattGri/weather-app-typescript.git`
-
-`npm install && npm start`
+1. Clone the repository `git clone https://github.com/MattGri/weather-app-typescript.git`
+2. Install dependencies `npm install`
+3. At the terminal run the command `npm start`
 
 # Screenshots 📺
 ![image](https://user-images.githubusercontent.com/61913031/180980960-d2cc5dd0-5cb6-40db-967e-1f9480ba0c1e.png)
